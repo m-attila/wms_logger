@@ -13,11 +13,16 @@
 -define(LAGER(Level, Format, Msg),
   _ = lager:Level(Format, Msg)).
 
--define(debug(Msg), ?LAGER_MSG(debug, Msg)).
--define(debug(Format, Msg), ?LAGER(debug, Format, Msg)).
--define(info(Msg), ?LAGER_MSG(info, Msg)).
--define(info(Format, Msg), ?LAGER(info, Format, Msg)).
--define(warning(Msg), ?LAGER_MSG(warning, Msg)).
--define(warning(Format, Msg), ?LAGER(warning, Format, Msg)).
--define(error(Msg), ?LAGER_MSG(error, Msg)).
--define(error(Format, Msg), ?LAGER(error, Format, Msg)).
+%% =============================================================================
+%% System event logging.
+%% =============================================================================
+-define(meta(Data), lager:md([{meta, Data}])).
+
+-define(debug(Msg), ?LAGER_MSG(debug, "{sys} " ++ Msg)).
+-define(debug(Format, Msg), ?LAGER(debug, "{sys} " ++ Format, Msg)).
+-define(info(Msg), ?LAGER_MSG(info, "{sys} " ++ Msg)).
+-define(info(Format, Msg), ?LAGER(info, "{sys} " ++ Format, Msg)).
+-define(warning(Msg), ?LAGER_MSG(warning, "{sys} " ++ Msg)).
+-define(warning(Format, Msg), ?LAGER(warning, "{sys} " ++ Format, Msg)).
+-define(error(Msg), ?LAGER_MSG(error, "{sys} " ++ Msg)).
+-define(error(Format, Msg), ?LAGER(error, "{sys} " ++ Format, Msg)).
